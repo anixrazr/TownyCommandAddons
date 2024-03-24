@@ -1,7 +1,7 @@
 name: TownyCommandAddons
-version: '${project.version}'
+version: "${project.version}"
 main: net.earthmc.townycommandaddons.TownyCommandAddons
-api-version: '1.19'
+api-version: "1.19"
 depend: [Towny]
 authors: [Fruitloopins]
 description: Consolidation of various Towny command addons

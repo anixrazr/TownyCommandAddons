@@ -1,0 +1,13 @@
+name: TownyCommandAddons
+version: '${project.version}'
+main: net.earthmc.townycommandaddons.TownyCommandAddons
+api-version: '1.19'
+depend: [Towny]
+authors: [Fruitloopins]
+description: Consolidation of various Towny command addons
+website: https://earthmc.net
+
+permissions:
+  townycommandaddons.command.nation.outlaw:
+    description: "Allows players in a nation to outlaw residents from teleporting to that nation"
+    default: false

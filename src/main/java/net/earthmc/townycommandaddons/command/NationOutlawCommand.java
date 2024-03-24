@@ -104,18 +104,21 @@ public class NationOutlawCommand implements TabExecutor {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         List<String> availableArguments = List.of("add", "remove");
 
-        return switch (args.length) {
-            case 1 -> {
-                if (args[0].isEmpty()) yield availableArguments;
-                yield availableArguments.stream()
-                        .filter(string -> string.startsWith(args[0].toLowerCase()))
-                        .collect(Collectors.toList());
-            }
-            case 2 -> TownyAPI.getInstance().getResidents().stream()
-                    .map(Resident::getName)
-                    .filter(name -> name.startsWith(args[args.length - 1].toLowerCase()))
+        if (args.length == 1) {
+            if (args[0].isEmpty()) return availableArguments;
+
+            return availableArguments.stream()
+                    .filter(arg -> arg.startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
-            default -> null;
-        };
+        }
+
+        if (args.length >= 2) {
+            return TownyAPI.getInstance().getResidents().stream()
+                    .map(Resident::getName)
+                    .filter(name -> name.startsWith(args[1].toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+
+        return null;
     }
 }

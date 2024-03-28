@@ -19,20 +19,23 @@ public class TownySpawnListener implements Listener {
 
     @EventHandler
     public void onNationSpawn(NationSpawnEvent event) {
-        handleResidentTeleport(event, event.getPlayer(), event.getToNation());
+        handleResidentTeleport(event, event.getPlayer(), event.getToNation(),
+                "You could not teleport to " + event.getToNation().getName() + " as they has outlawed you");
     }
 
     @EventHandler
     public void onTownSpawn(TownSpawnEvent event) {
-        handleResidentTeleport(event, event.getPlayer(), event.getToTown().getNationOrNull());
+        handleResidentTeleport(event, event.getPlayer(), event.getToTown().getNationOrNull(),
+                "You could not teleport to " + event.getToTown().getName() + " as their nation has outlawed you");
     }
 
     @EventHandler
     public void onResidentSpawn(ResidentSpawnEvent event) {
-        handleResidentTeleport(event, event.getPlayer(), event.getToTown().getNationOrNull());
+        handleResidentTeleport(event, event.getPlayer(), event.getToTown().getNationOrNull(),
+                "You could not teleport to your bed in " + event.getToTown().getName() + " as their nation has outlawed you");
     }
 
-    private void handleResidentTeleport(SpawnEvent event, Player player, Nation toNation) {
+    private void handleResidentTeleport(SpawnEvent event, Player player, Nation toNation, String cancelMessage) {
         if (toNation == null) return;
 
         if (toNation.hasResident(TownyAPI.getInstance().getResident(player))) return;
@@ -42,7 +45,7 @@ public class TownySpawnListener implements Listener {
 
         if (nationOutlaws.contains(TownyAPI.getInstance().getResident(player))) {
             event.setCancelled(true);
-            TownyMessaging.sendErrorMsg(player, "You could not teleport to " + toNation.getName() + " as they have outlawed you");
+            event.setCancelMessage(cancelMessage);
         }
     }
 }

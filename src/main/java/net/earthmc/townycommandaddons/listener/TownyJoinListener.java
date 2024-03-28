@@ -73,7 +73,7 @@ public class TownyJoinListener implements Listener {
                 event.setCancelled(true);
 
                 String nationName = event.getNation().getName();
-                TownyMessaging.sendErrorMsg(resident, "Failed to join " + nationName + " as they have outlawed a resident in your town");
+                event.setCancelMessage("Failed to join " + nationName + " as they have outlawed a resident in your town");
                 break;
             }
         }

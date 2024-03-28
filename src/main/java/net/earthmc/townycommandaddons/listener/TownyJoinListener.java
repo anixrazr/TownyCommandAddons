@@ -47,7 +47,7 @@ public class TownyJoinListener implements Listener {
     }
 
     @EventHandler
-    public void onNationPreInviteTown(NationInviteTownEvent event) {
+    public void onNationInviteTown(NationInviteTownEvent event) {
         TownJoinNationInvite invite = event.getInvite();
 
         NationMetadataManager nmm = new NationMetadataManager();

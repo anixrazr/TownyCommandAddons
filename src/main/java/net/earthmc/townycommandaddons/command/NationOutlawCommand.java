@@ -108,7 +108,6 @@ public class NationOutlawCommand implements TabExecutor {
             if (args[0].isEmpty()) return availableArguments;
 
             return availableArguments.stream()
-                    .filter(arg -> arg.startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
         }
 

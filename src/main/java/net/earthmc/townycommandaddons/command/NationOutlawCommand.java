@@ -115,7 +115,6 @@ public class NationOutlawCommand implements TabExecutor {
         if (args.length >= 2) {
             return TownyAPI.getInstance().getResidents().stream()
                     .map(Resident::getName)
-                    .filter(name -> name.startsWith(args[1].toLowerCase()))
                     .collect(Collectors.toList());
         }
 

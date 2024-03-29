@@ -67,7 +67,6 @@ public class NationOutlawlistCommand implements TabExecutor {
             if (args[0].isEmpty()) return nationNames;
 
             return nationNames.stream()
-                    .filter(name -> name.startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
         }
 

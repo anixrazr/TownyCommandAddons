@@ -72,8 +72,9 @@ public class TownyJoinListener implements Listener {
             if (nationOutlaws.contains(resident)) {
                 event.setCancelled(true);
 
+                String townName = event.getTownName();
                 String nationName = event.getNation().getName();
-                event.setCancelMessage("Failed to join " + nationName + " as they have outlawed a resident in your town");
+                event.setCancelMessage(townName + " can not join " + nationName + " as " + nationName + " has outlawed a resident in " + townName);
                 break;
             }
         }
